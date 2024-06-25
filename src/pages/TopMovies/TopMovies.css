@@ -1,0 +1,62 @@
+.top-movies__content{
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding: 0 80px;
+}
+
+.top-movies__title-h2 {
+  margin: 0;
+  padding: 0;
+  align-self: stretch;
+  text-align: left;
+  color: var(--content-primary);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.top-movies__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 35px;
+  list-style: none;
+}
+
+.top-movies-wrapper{
+  position: relative;
+}
+
+.top-movies__poster {
+  border-radius: 16px;
+  width: 224px;
+  height: 336px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 80px 0 rgba(255, 255, 255, 0.33);
+  transition: all .3s ease-in-out;
+}
+
+.top-movies__poster:hover{
+  transform: scale(1.1);
+}
+
+
+.top-movies-number {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: -15px;
+  top: -15px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 133%;
+  border-radius: 50px;
+  padding: 8px 24px;
+  width: 62px;
+  height: 48px;
+  z-index: 1;
+  background-color: var(--content-primary);
+}

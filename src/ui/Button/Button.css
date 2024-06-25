@@ -1,0 +1,57 @@
+.Button {
+display: inline-flex;
+border-radius: 28px;
+padding: 16px 48px;
+max-width: 340px;
+height: 56px;
+background: #6A5DC2;
+border-radius: 28px;
+border: none;
+justify-content: center;
+align-items: center;
+gap: 12px;
+font-family: 'Play';
+font-weight: 700;
+font-size: 18px;
+line-height: 133%;
+color: var(--content-primary);
+transition: all .3s ease-in-out;
+}
+
+.Button:hover {
+ background-color: rgb(214, 210, 241);
+}
+
+.Button:focus,
+.Button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.Button.outline {
+  border: none;
+  background: transparent;
+  color: #000;
+  outline: none;
+  cursor: pointer;
+}
+
+.Button.primary[disabled] {
+  background: #e5e5e5;
+  border: #e5e5e5;
+  color: #878787;
+}
+
+.Button.icon {
+  max-width: 68px;
+  width: 100%;
+  min-height: 56px;
+  background: #333;
+  border: #e5e5e5;
+  color: #878787;
+}
+
+.Button.icon:hover {
+  background-color: rgb(214, 210, 241);
+}
+
+

@@ -1,0 +1,13 @@
+.top-movies{
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding: 0 80px;
+  padding-bottom: 120px;
+}
+
+.top-movies-link-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

@@ -1,0 +1,45 @@
+.about-movie{
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.about-movie-list{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.about-movie-item {
+  display: flex;
+  color: var(--content-primary);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.about-movie__title-h2 {
+    align-self: stretch;
+    text-align: left;
+    color: var(--content-primary);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px;
+}
+
+.about-movie-info{
+  display: block;
+  white-space: nowrap;
+  max-width: 320px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.about-movie-info-text{
+  padding-left: 10px;
+}
+

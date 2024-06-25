@@ -1,0 +1,29 @@
+.movie-page-img-position{
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.movie-page-img-wrapper{
+  max-width: 900px;
+  width: 100%;
+  height: 680px;
+  position: relative;
+
+}
+
+.movie-page-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gardient{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90.00deg, rgb(10, 11, 11), rgba(0, 0, 0, 0.5) 20.411%, rgba(0, 0, 0, 0) 100%);
+}

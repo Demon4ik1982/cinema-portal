@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from "react";
 import Api from "../../api/api";
-import "./MoviePage.css"
 import { useParams } from "react-router-dom";
 import { Movie } from "../../models/MoviePage";
 import { MovieInfo } from "../../components/movieInfo/MovieInfo";
 import { AboutMovie } from "../../components/aboutMovie/AboutMovie";
 import { MovieBackground } from "../../components/movieBackground/MovieBackground";
+import "./MoviePage.css"
 
 export const MoviePage: FC = () => {
 	const [movie, setMovie] = useState<Movie>();
@@ -17,8 +17,8 @@ export const MoviePage: FC = () => {
 	};
 
   useEffect(() => {
-  getMovieInfo();
-}, []);
+    getMovieInfo();
+  }, []);
 
 
   if (movie !== undefined) {
@@ -32,12 +32,14 @@ export const MoviePage: FC = () => {
       <div className="movie-page-bg">
         <div className="movie-page-wrapper">
         <MovieInfo
+          MovieId={movie?.id}
           MovieName={movie?.title}
           MovieGenres={movie?.genres}
           MoviePlot={movie?.plot}
           MovieRelize={movie?.releaseYear}
           MovieRunTime={movie?.runtime}
           MovieRating={movie?.tmdbRating}
+          MovieTrailer={movie.trailerUrl}
         />
         <AboutMovie
           MovieLanguage={movie.language}

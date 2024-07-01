@@ -1,6 +1,8 @@
+import { Movies } from "./Movie";
+
 export interface IUser {
   email: string,
-  favorites: string[],
+  favorites: Movies[],
   name: string,
   surname: string
 }

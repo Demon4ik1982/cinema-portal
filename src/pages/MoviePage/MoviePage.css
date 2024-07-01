@@ -15,4 +15,12 @@
   gap: 162px;
 }
 
+@media (max-width: 1155px) {
+  .movie-page {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+}
 

@@ -41,6 +41,10 @@ transition: all .3s ease-in-out;
   color: #878787;
 }
 
+.Button.account {
+  padding: 0 20px;
+}
+
 .Button.icon {
   max-width: 68px;
   width: 100%;
@@ -51,7 +55,17 @@ transition: all .3s ease-in-out;
 }
 
 .Button.icon:hover {
-  background-color: rgb(214, 210, 241);
+  background-color: #747474;
 }
 
+@media (max-width: 1155px) {
+  .Button {
+    max-width: 410px;
+    width: 100%;
+  }
 
+  .Button.icon{
+    max-width: 59px;
+    padding: 29px;
+  }
+}

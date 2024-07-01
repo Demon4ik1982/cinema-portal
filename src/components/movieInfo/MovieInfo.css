@@ -64,6 +64,12 @@
   gap: 16px;
 }
 
+.movie-info-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .movie-info-icon-btn {
   display: flex;
   justify-content: center;
@@ -78,4 +84,34 @@
   line-height: 56px;
   letter-spacing: 0%;
   text-align: left;
+}
+
+.movie-info-run-time{
+  text-wrap: nowrap;
+}
+
+.movie-info-list-genres{
+
+}
+
+@media (max-width: 1155px) {
+  .movie-info-container {
+    padding-top: 10px;
+    font-size: 14px;
+  }
+
+  .movie-info-bg {
+    align-items: flex-start;
+    min-height: auto;
+  }
+
+  .movie-info-btn-wrapper {
+    max-width: 410px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .movie-info-list {
+    flex-wrap: wrap;
+  }
 }

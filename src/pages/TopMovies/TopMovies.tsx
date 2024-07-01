@@ -22,7 +22,7 @@ export const TopMovies: FC = () => {
       <ul className="top-movies__list">
 			{movies.map((movie, id) => (
 				<li className="top-movies-wrapper hvr-shadow" key={id}>
-          <Link to={`/movies/${movie.id}`}>
+          <Link to={`/movies/${movie.id}`} replace={true}>
             <div className="top-movies-number">{id + 1}</div>
             <img src={movie.posterUrl} alt={movie.title} className="top-movies__poster"/>
           </Link>

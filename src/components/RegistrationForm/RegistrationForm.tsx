@@ -29,7 +29,7 @@ export const RegistrationForm: FC<IRegistrationProps> = ({ setActive }) => {
 
   return (
     <form className="registration-form" onSubmit={handleSubmit}>
-      <FormField label="Email" iconType='email'>
+      <FormField label="Email" iconType='email' className='modal-icon'>
         <input
           type="email"
           name="email"
@@ -39,7 +39,7 @@ export const RegistrationForm: FC<IRegistrationProps> = ({ setActive }) => {
           value={email}
         />
       </FormField>
-      <FormField label="Имя пользователя" iconType='person'>
+      <FormField label="Имя пользователя" iconType='person' className='modal-icon'>
         <input
           type="text"
           name="username"
@@ -49,7 +49,7 @@ export const RegistrationForm: FC<IRegistrationProps> = ({ setActive }) => {
           value={username}
         />
       </FormField>
-      <FormField label="Имя пользователя" iconType='person'>
+      <FormField label="Имя пользователя" iconType='person' className='modal-icon'>
         <input
           type="text"
           name="surname"
@@ -59,7 +59,7 @@ export const RegistrationForm: FC<IRegistrationProps> = ({ setActive }) => {
           value={surname}
         />
       </FormField>
-      <FormField label="Пароль" iconType='password'>
+      <FormField label="Пароль" iconType='password' className='modal-icon'>
         <input
           type="password"
           name="password"
@@ -69,7 +69,7 @@ export const RegistrationForm: FC<IRegistrationProps> = ({ setActive }) => {
           value={password}
         />
       </FormField>
-      <FormField label="Повторите пароль" iconType='password'>
+      <FormField label="Повторите пароль" iconType='password' className='modal-icon'>
         <input
           type="password"
           name="passwordRepeat"

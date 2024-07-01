@@ -10,7 +10,7 @@ export const UserSchema = z.object ({
 
 export const UserSchemaLogin = z.object ({
   email: z.string(),
-  favorites: z.string(),
+  favorites: z.array(z.string()),
   name: z.string(),
   surname: z.string()
 })
@@ -56,4 +56,9 @@ export function fetchMe(): Promise<UserLogin> {
   .then(validateResponse)
   .then((response) => response.json())
   .then((data) => UserSchemaLogin.parse(data));
+}
+
+export function logout(): Promise<Response> {
+  return fetch('https://cinemaguide.skillbox.cc/auth/logout', { credentials: "include" })
+  .then((response) => response.json())
 }

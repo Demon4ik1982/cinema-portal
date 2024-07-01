@@ -2,6 +2,18 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../../ui/Button/Button';
 import './MovieInfo.css';
+import Api from '../../api/api';
+import Modal from '../modal/Modal';
+import { Like, LogoMini, Unlike } from '../../ui/svg/svgGallery';
+import { RegistrationForm } from '../RegistrationForm';
+import { LoginForm } from '../LoginForm';
+import { useEffect, useState } from 'react';
+import Trailer from '../Trailer/Trailer';
+import ReactPlayer from 'react-player';
+
+type AuthType = 'login' | 'registration';
+
+type LikeType = 'like' | 'unlike'
 
 type MovieProps = {
   MovieId?: number,
@@ -12,6 +24,7 @@ type MovieProps = {
   MoviePlot: string | undefined,
   MovieRating: number | undefined,
   aboutMovieBtn?: string | undefined,
+  MovieTrailer?: string | undefined
   Click?: (e: React.SyntheticEvent<HTMLButtonElement>) => void;
 }
 
@@ -19,7 +32,31 @@ function padTo2Digits(num: number) {
   return num.toString().padStart(2, '0')
 }
 
-export const MovieInfo = ({ MovieName, MovieGenres, MovieRelize, MovieRunTime, MoviePlot, MovieRating, Click, aboutMovieBtn, MovieId  }: MovieProps) => {
+export const MovieInfo = ({ MovieName, MovieGenres, MovieRelize, MovieRunTime, MoviePlot, MovieRating, Click, aboutMovieBtn, MovieId, MovieTrailer  }: MovieProps) => {
+  const [modalActive, setModalActive] = useState(false)
+  const [trailerActive, setTrailerActive] = useState(false)
+  const [playTrailer, setPlayTrailer] = useState(false)
+  const [authType, setAuthType] = useState<AuthType>('login');
+  const [like, setLike] = useState<LikeType>('unlike');
+
+
+
+  const getMovieInfo = async (): Promise<void> => {
+		const data = await Api.getFavoriteMovie();
+    const checkLike = data.some((item) => item.id === MovieId)
+    if (checkLike) setLike('like')
+	};
+
+  useEffect(() => {
+  getMovieInfo();
+}, []);
+
+  const handleClick = () => {
+    setAuthType((prevState) =>
+      prevState === "registration" ? "login" : "registration",
+    );
+  };
+
   let hour = 0;
   let minutes = 0;
   let colorRating = ''
@@ -33,6 +70,7 @@ export const MovieInfo = ({ MovieName, MovieGenres, MovieRelize, MovieRunTime, M
   hour = Math.floor(MovieRunTime / 60);
   minutes = MovieRunTime % 60;
   }
+  if (MovieId !== undefined) {
     return (
         <div className='movie-info-bg'>
           <div className='movie-info-container'>
@@ -46,7 +84,7 @@ export const MovieInfo = ({ MovieName, MovieGenres, MovieRelize, MovieRunTime, M
             <div className='movie-info-genres'>
               <ul className='movie-info-list'>
                 {MovieGenres?.map((genres, id) => (
-                  <li className="top-movies-wrapper" key={id}>
+                  <li className="movie-info-list-genres" key={id}>
                     {genres}
                   </li>
                 ))}
@@ -62,16 +100,21 @@ export const MovieInfo = ({ MovieName, MovieGenres, MovieRelize, MovieRunTime, M
               {MoviePlot}
             </span>
             <div className='movie-info-btn-wrapper'>
-              <Button>Трейлер</Button>
+              <Button onClick={() => {setTrailerActive(true), setPlayTrailer(true)}}>Трейлер</Button>
+              <div className='movie-info-wrapper'>
               {!aboutMovieBtn ? '' : <Link className={`Button`} to={`/movies/${MovieId}`}>О фильме</Link>}
-
-              <Button type='icon'>
+              {like === 'unlike' ?
+                <Button type='icon' onClick={() => { Api.setFavoriteMovie(MovieId.toString()).then(() => setLike('like')).catch(() => setModalActive(true)) }}>
                 <div className='movie-info-icon-btn'>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16.5 3C19.5376 3 22 5.5 22 9C22 16 14.5 20 12 21.5C9.5 20 2 16 2 9C2 5.5 4.5 3 7.5 3C9.35997 3 11 4 12 5C13 4 14.64 3 16.5 3ZM12.9339 18.6038C13.8155 18.0485 14.61 17.4955 15.3549 16.9029C18.3337 14.533 20 11.9435 20 9C20 6.64076 18.463 5 16.5 5C15.4241 5 14.2593 5.56911 13.4142 6.41421L12 7.82843L10.5858 6.41421C9.74068 5.56911 8.5759 5 7.5 5C5.55906 5 4 6.6565 4 9C4 11.9435 5.66627 14.533 8.64514 16.9029C9.39 17.4955 10.1845 18.0485 11.0661 18.6038C11.3646 18.7919 11.6611 18.9729 12 19.1752C12.3389 18.9729 12.6354 18.7919 12.9339 18.6038Z" fill="white" />
-                </svg>
+                  <Unlike />
                 </div>
-                </Button>
+              </Button> :
+              <Button type='icon' onClick={() => { Api.deleteFavoriteMovie(MovieId.toString()).then(() => setLike('unlike')) }}>
+                <div className='movie-info-icon-btn'>
+                  <Like />
+                </div>
+              </Button>
+              }
               {!Click ? '' : <Button type='icon' onClick={Click}>
                 <div className='movie-info-icon-btn'>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,10 +122,21 @@ export const MovieInfo = ({ MovieName, MovieGenres, MovieRelize, MovieRunTime, M
                 </svg>
                 </div>
               </Button>}
-
+              </div>
             </div>
           </div>
-
+          <Modal active={modalActive} setActive={setModalActive}>
+            <LogoMini/>
+              <div className="modal-content-warpper">
+                {authType === "registration" ? <span className="modal-content-descr">Регистрация</span> : ""}
+                {authType === "registration" ? <RegistrationForm setActive={setModalActive} /> : <LoginForm setActive={setModalActive}/>}
+                <Button type='outline' onClick={handleClick}>{authType === "registration" ? "Войти" : "Создать аккаунт"}</Button>
+              </div>
+          </Modal>
+          <Trailer active={trailerActive} setActive={setTrailerActive} setTrailer={setPlayTrailer}>
+            <ReactPlayer width={720} url={MovieTrailer} controls={false} playing={playTrailer} stopOnUnmount={true}/>
+          </Trailer>
         </div>
     )
+  }
 }

@@ -1,0 +1,158 @@
+.search {
+  width: 100%;
+  position: absolute;
+  top: 84px;
+  padding: 8px;
+  background: #393B3C;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  opacity: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.search.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.search-btn {
+  position: absolute;
+  display: flex;
+  top: -40px;
+  right: -50px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50px;
+  background-color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+
+.search__movie-link {
+  display: flex;
+  gap: 10px;
+  padding: 20px 8px;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: all .3s ease-in-out;
+}
+
+.search__movie-link:hover {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.search__movie-info{
+  display: flex;
+  gap: 10px;
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-close-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+
+.search-icon {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.search__movie-list {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search__movie-poster {
+  width: 40px;
+  height: 52px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.search__movie-info-reiting {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2px 8px;
+  gap: 4px;
+  width: 47px;
+  height: 20px;
+  border-radius: 16px;
+  flex-grow: 0;
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+}
+
+.search__movie-title {
+margin: 0;
+padding: 0;
+font-family: 'Play';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 24px;
+
+
+color: #FFFFFF;
+}
+
+@media (max-width: 1155px) {
+  .search__movie-poster {
+    width: 158px;
+    height: 206px;
+  }
+
+  .search__movie-link {
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 220px;
+  }
+
+  .search__movie-item {
+    flex-shrink: 0;
+    scroll-snap-align: end;
+    padding: 0 5px;
+  }
+
+  .search__movie-list {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    scroll-snap-type: x mandatory;
+    flex-shrink: 0;
+    overflow-x: auto;
+    gap: 0;
+  }
+
+  .search.active {
+    border-radius: 8px;
+  }
+
+  .search__movie-info {
+    flex-wrap: wrap;
+  }
+
+  .search__movie-title {
+    padding-top: 10px;
+  }
+}

@@ -16,7 +16,7 @@ export const RandomMovies: FC = () => {
 		setMovies(data);
 	};
 
-  	useEffect(() => {
+  useEffect(() => {
 		getMovies();
 	}, []);
 

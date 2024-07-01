@@ -2,9 +2,9 @@ import { FC, FormEventHandler, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { FormField } from '../FormField';
 import { Button } from '../../ui/Button/Button';
-import './LoginForm.css';
 import { login } from '../../api/User';
 import { queryClient } from '../../api/queryClients';
+import './LoginForm.css';
 
 type ILoginProps = {
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,12 +24,13 @@ export const LoginForm: FC<ILoginProps> = ({ setActive }) => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+
     loginMutation.mutate();
   };
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
-      <FormField label="Email" iconType='email'>
+      <FormField label="Email" iconType='email' className='modal-icon'>
         <input
           type="email"
           name="email"
@@ -40,7 +41,7 @@ export const LoginForm: FC<ILoginProps> = ({ setActive }) => {
         />
       </FormField>
 
-      <FormField label="Пароль" iconType='password'>
+      <FormField label="Пароль" iconType='password' className='modal-icon'>
         <input
           type="password"
           name="password"

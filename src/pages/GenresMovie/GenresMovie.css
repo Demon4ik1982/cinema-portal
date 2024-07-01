@@ -33,6 +33,11 @@
   height: 304px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 0 80px 0 rgba(255, 255, 255, 0.33);
+  transition: all .3s ease-in-out;
+}
+
+.genres-item:hover {
+  transform: scale(1.1);
 }
 
 .genres-item-link {
@@ -58,4 +63,14 @@
   object-fit: cover;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+}
+
+@media (max-width: 1155px) {
+  .genres {
+    padding: 0 20px;
+  }
+
+  .genres__list {
+    justify-content: center;
+  }
 }

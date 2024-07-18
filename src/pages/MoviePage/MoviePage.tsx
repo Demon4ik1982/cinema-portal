@@ -18,7 +18,7 @@ export const MoviePage: FC = () => {
 
   useEffect(() => {
     getMovieInfo();
-  }, []);
+  }, [movieId]);
 
 
   if (movie !== undefined) {
